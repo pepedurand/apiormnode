@@ -1,0 +1,58 @@
+Install express and body-parser
+
+Criar index.js dentro da pasta api
+
+Importar configurações das bibliotecas
+    const express = require ('express')
+    const bodyParser = require ('bodyParser')
+
+Para usar o express, deve definir uma const chamada app com o valor express()
+    const app = express()
+
+Aqui, você já importou as configurações do express, agora podemos os métodos da biblioteca express.
+
+Começamos com o app.use, o parâmetro é o bodyParser.
+    app.use(bodyParser.json())
+
+O método use serve para avisar o express que vai ter alguma biblioteca ou trecho de campo que vai fazer o meio de campo entre a requisicao e o próprio express. Ele pega tudo que vai chegar e converte em json.
+
+Definir a porta
+    const port = 3000
+
+Criar a rota, o app.get, recebe 2 parâmetros, primeiro a string com a rota e depois uma função callback que recebe a requisição e a resposta, após receber ele passa pra frente uma informação, nesse caso estamos passando a resposta com status 200 e enviando uma mensagem em formato de objeto { mensagem: 'api' }.
+    app.get('/teste', (req, res) => res
+    .status(200)
+    .send({ mensagem: 'Boas-vindas a api' })
+    )
+
+    app.listen(porta, () => console.log(`Servidor rodando na porta ${port}`))
+
+O app.listen, recebe 2 parâmetros, primeiro o parâmetro da porta, depois uma função de callback, que nesse caso vai informar que o servidor está rodando.
+
+Para finalizar o funcinamento inicial da API, devemos escrever a seguinte linha de código. Ela carrega as informações de app para serem utilizadas em toda aplicação.
+
+module.exports = app
+
+agora se você, no terminal, executar o comando "node api/index.js", irá aparecer a mensagem que o servidor está rodando na porta enviada.
+
+Atualmente, qualquer mudança feita não altera o funcionamento do servidor, temos que derrubar e iniciar novamente. Para que as mudanças feitas sejam imediatamente levadas ao servidor, sem precisar derruba-lo, podemos instalar o nodemon com npm install --save-dev nodemon.
+
+Após a instalação, para importar à api, devemos ir em package.json e acrescentar a seguinte linha de código em script:
+    "start": "nodemon ./api/index.js",
+
+Assim, ao digitar npm run start, o servidor ficará online direto e qualquer mudança manterá ele funcionando e já com a atualização, não precisaremos ficar derrubando e subindo novamente.
+
+Instalaremos mais algumas ferramentas no terminal
+
+npm install mysql2 - para configurar opções do mysql, exportação de banco de dados, criação e alteração de tabelas, importações de dados, etc.
+
+npm install sequelize sequelize-cli path
+    sequelize - usar a ferramenta
+    sequelize-cli - alguns recursos de linha de comando, se conectar com o banco e criar modelos (command line interface)
+
+npx sequelize-cli init - roda as dependências que são instaladas localmente, isso cria algumas pastas internas que servem como pre configurações do projeto 
+
+As pastas models, migrations e seeders, devem ir para a pasta api (bastar mover), feito isso, devemos avisar a alteração nos arquivos internos.
+
+
+Criar .sequelizerc
