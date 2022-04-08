@@ -56,3 +56,16 @@ As pastas models, migrations e seeders, devem ir para a pasta api (bastar mover)
 
 
 Criar .sequelizerc
+
+Padrão  MVC
+
+model
+view
+controller
+
+O controlador faz o meio de campo entre o modelo e a aplicação.
+
+Exemplo, queremos acessar o modelo pessoas e queremos mostrar para o usuário, todas as pessoas cadastras.
+
+Através de uma requisição http, ele chama o /pessoas, e aciona o controlador de pessoas, o controlador por sua vez pede essa infomação ao modelo e o modelo retorna esses dados, que são processados e passados para camada de vista, gerando o json que vai ser exibido ao usuário
+
